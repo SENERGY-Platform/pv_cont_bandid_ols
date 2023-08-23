@@ -178,7 +178,7 @@ class Operator(util.OperatorBase):
                 expected_num = estimated_reward_1
             power_forecast.append((new_weather_forecasted_for[i],expected_num))
         with open(self.power_forecast_plot_file, 'wb') as f:
-            pickle.dump(power_forecast)
+            pickle.dump(power_forecast, f)
         return power_forecast
         
     def run(self, data, selector):
