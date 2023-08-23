@@ -3,7 +3,7 @@ name: 'PROD build'
 on:
   push:
     branches:
-      - main
+      - master
   workflow_dispatch:
 
 jobs:
@@ -35,4 +35,4 @@ jobs:
           platforms: linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
           push: true
           tags: |
-            ghcr.io/senergy-platform/pv-greedy-operator:prod
+            ghcr.io/senergy-platform/pv-ols-operator:prod
