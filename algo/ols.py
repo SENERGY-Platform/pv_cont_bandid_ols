@@ -31,7 +31,7 @@ def compute_nu_0(q, weather_dim):
     nu_0 = max(nu, weather_dim+1)
     return nu_0
 
-def update_Taus(q, Tau, Tau_0, Tau_1, nu_0):
+def update_Taus(q, nu_0, Tau_0, Tau_1, Tau):
     if Tau == []: # We use the length of Tau to implicitly track the number of time steps. This works because we append an element to Tau, every time we get new weather values.
         Tau = [1]
     else:
