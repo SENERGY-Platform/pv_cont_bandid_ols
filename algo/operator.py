@@ -102,10 +102,7 @@ class Operator(util.OperatorBase):
         newest_agent = self.agents[-1]
         newest_agent.save_weather_data(new_weather_input)
         newest_agent.initial_time = pd.to_datetime(new_weather_data[0]['weather_time']).tz_localize(None)
-        newest_agent.action = self.actions[-1]
-
-        self.design_matrix_0,  self.design_matrix_1, self.design_matrix= ols.update_design_matrices(self.design_matrix_0, self.design_matrix_1, self.design_matrix,
-                                                                                                             new_weather_input, self.actions[-1])                                                       
+        newest_agent.action = self.actions[-1]     
     
         if newest_agent.action==0:
             return {"value": 0}
@@ -145,6 +142,8 @@ class Operator(util.OperatorBase):
                 old_agent.reward = old_agent.get_reward(old_agent.action, [power for _, power in self.daylight_power_history])
                 self.rewards.append(old_agent.reward)
                 self.agents_data.append(old_agent)
+                self.design_matrix_0,  self.design_matrix_1, self.design_matrix= ols.update_design_matrices(self.design_matrix_0, self.design_matrix_1, self.design_matrix,
+                                                                                                             old_agent.initial_weather_data, old_agent.action) 
                 if old_agent.action==0:
                     self.rewards_0.append(old_agent.reward)
                     self.num_finished_agents_0 += 1
