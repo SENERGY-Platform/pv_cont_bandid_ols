@@ -3,7 +3,7 @@ from sklearn.linear_model import LinearRegression
 
 def update_design_matrices(design_matrix_0, design_matrix_1, design_matrix, new_weather_input, action):
     if design_matrix.shape == (0,0):
-       design_matrix_0 = new_weather_input.reshape((1,-1))
+       design_matrix = new_weather_input.reshape((1,-1))
     else:
        design_matrix = np.vstack((design_matrix, new_weather_input)) 
 
